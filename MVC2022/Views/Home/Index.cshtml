@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Lanches Bahia";
+}
+
+    <h1>Home</h1>
+    <partial name="_Carousel"/>
+    <h2>Seus Lanches Preferidos</h2>
+    <h4>Peça já o seu!</h4>
+<div class="row">
+    @foreach (var lanche in Model.LanchesPreferidos)
+    {
+        <partial name="_LancheResumo" for="@lanche"/>
+    }
+
+    </div>

@@ -1,0 +1,36 @@
+﻿@model Pedido
+<div class="container">
+    <div class="jumbotron">
+        <h2>@ViewBag.ChekoutCompletoMensagem</h2>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <p>Cliente: <strong>@Model.Nome</strong></p>
+            <p><strong>@Model.PedidoEnviado</strong></p>
+            <p>Numero do pedido:@Model.PedidoId</p>
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Quantidade:</th>
+                    <th>Lanche:</th>
+                    <th>Preço:</th>
+                </tr>
+                @foreach (var item in Model.Pedidoltens)
+                {
+                    <tr>
+                        <td><img src="@item.Lanche.LancheImagemUrl" width="40" height="40" /></td>
+                        <td>@item.Quantidade</td>
+                        <td>@item.Lanche.LancheNome</td>
+                        <td>@item.Lanche.LanchePreco</td>
+                    </tr>
+                }
+            </table>
+            <h4>Valor Total do Pedido: <strong>@(((decimal)ViewBag.totalPedido).ToString("C2"))</strong></h4>
+        </div>
+    </div>
+</div>
+<div class="form-group text-center">
+    <h3 >
+        <a action="nav-link text-info" asp-action="Index" asp-controller="Home">Voltar</a>
+    </h3>
+</div>
