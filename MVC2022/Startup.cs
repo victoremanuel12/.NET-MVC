@@ -6,6 +6,7 @@ using MVC2022.Models;
 using MVC2022.Repositories;
 using MVC2022.Repositories.Interfaces;
 using MVC2022.Services;
+using ReflectionIT.Mvc.Paging;
 
 namespace LanchesMac;
 public class Startup
@@ -45,9 +46,16 @@ public class Startup
                 politica.RequireRole("Admin");
             });
         });
-        services.AddControllersWithViews();
+        //Serviço de páginação da área admin 
+
+        services.AddPaging(options => {
+            options.ViewName = "Bootstrap4";
+            options.PageParameterName = "pageindex";
+        });
         services.AddMemoryCache();
         services.AddSession();
+        services.AddControllersWithViews();
+        
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

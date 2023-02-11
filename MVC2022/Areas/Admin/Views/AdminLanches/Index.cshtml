@@ -1,0 +1,95 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<MVC2022.Models.Lanche>
+
+@{
+    ViewData["Title"] = "Lanhes";
+}
+
+<h1>Lanches</h1>
+<form method="get" class="form-inline">
+    <input name="filter" class="form-control" placeholder="Filtrar" value="@Model.RouteValue["filter"]" />
+    <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search" aria-hidden="true">
+            Procurar
+        </span>
+    </button>
+
+</form>
+<p>Total de Lanches cadastrados : @Model.TotalRecordCount</p>
+<div>
+    <vc:pager paging-list="@Model"></vc:pager>
+</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LancheNome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LancheDescricaoCurta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LancheDescricaoDetalhada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LanchePreco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LancheImagemUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LancheImagemThumbnailUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsLanchePreferido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmEstoque)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LancheNome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LancheDescricaoCurta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LancheDescricaoDetalhada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LanchePreco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LancheImagemUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LancheImagemThumbnailUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsLanchePreferido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmEstoque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.CategoriaDescricao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LancheId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.LancheId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.LancheId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
